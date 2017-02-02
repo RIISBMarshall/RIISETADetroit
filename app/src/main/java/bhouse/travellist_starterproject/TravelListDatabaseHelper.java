@@ -4,14 +4,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.database.sqlite.SQLiteOpenHelper;
-import java.io.IOException;
+
+import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 /**
  * Created by bmarshall on 1/31/17.
  */
 
-public class TravelListDatabaseHelper extends SQLiteOpenHelper {
+public class TravelListDatabaseHelper extends SQLiteAssetHelper {
 
     private static String DB_NAME = "ETADetroitDatabase.db";
 
@@ -22,16 +22,6 @@ public class TravelListDatabaseHelper extends SQLiteOpenHelper {
     public TravelListDatabaseHelper(Context context) {
         super(context, DB_NAME, null, 1);
         this.myContext = context;
-    }
-
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
 
     public Cursor getRoutes(String company) {
