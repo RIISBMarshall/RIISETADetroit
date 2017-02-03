@@ -1,4 +1,4 @@
-package bhouse.travellist_starterproject;
+package bhouse.travellist_starterproject.view;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,7 +6,10 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class RouteDetailsActivity extends Activity {
+import bhouse.travellist_starterproject.R;
+import bhouse.travellist_starterproject.controller.Controller;
+
+public class BusRouteDetailsActivity extends Activity {
 
     private Cursor routeDetailsCursor;
     public static final String EXTRA_ROUTE = "route";
@@ -16,11 +19,12 @@ public class RouteDetailsActivity extends Activity {
     private TextView direction2;
     private TextView days_active;
     private String route;
+    String routeId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_route_details);
+        setContentView(R.layout.activity_bus_route_details);
         final Controller aController = (Controller) getApplicationContext();
         Intent intent = getIntent();
         route = intent.getStringExtra(EXTRA_ROUTE);
@@ -41,6 +45,7 @@ public class RouteDetailsActivity extends Activity {
             direction1.setText("DIRECTION 1: " + routeDetailsCursor.getString(3));
             direction2.setText("DIRECTION 2: " + routeDetailsCursor.getString(4));
             days_active.setText("DAYS ACTIVE: " + routeDetailsCursor.getString(5));
+            routeId = routeDetailsCursor.getString(6);
         }
     }
 }

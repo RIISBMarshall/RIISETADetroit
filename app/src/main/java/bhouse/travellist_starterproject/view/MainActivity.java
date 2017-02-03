@@ -1,4 +1,4 @@
-package bhouse.travellist_starterproject;
+package bhouse.travellist_starterproject.view;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,6 +16,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.support.v4.util.Pair;
 import android.widget.Toolbar;
+
+import bhouse.travellist_starterproject.adapters.BusCompanyListAdapter;
+import bhouse.travellist_starterproject.R;
 
 
 public class MainActivity extends Activity {
@@ -47,8 +50,8 @@ public class MainActivity extends Activity {
   BusCompanyListAdapter.OnItemClickListener onItemClickListener = new BusCompanyListAdapter.OnItemClickListener() {
     @Override
     public void onItemClick(View v, int position) {
-      Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-      intent.putExtra(DetailActivity.EXTRA_PARAM_ID, position);
+      Intent intent = new Intent(MainActivity.this, BusCompanyDetailsActivity.class);
+      intent.putExtra(BusCompanyDetailsActivity.EXTRA_PARAM_ID, position);
       //startActivity(intent);
       ImageView busImage = (ImageView) v.findViewById(R.id.busImage);
       LinearLayout busNameHolder = (LinearLayout) v.findViewById(R.id.busNameHolder);

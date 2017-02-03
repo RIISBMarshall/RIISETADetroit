@@ -1,4 +1,4 @@
-package bhouse.travellist_starterproject;
+package bhouse.travellist_starterproject.model;
 
 import java.util.ArrayList;
 

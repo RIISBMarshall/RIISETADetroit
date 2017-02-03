@@ -1,7 +1,9 @@
-package bhouse.travellist_starterproject;
+package bhouse.travellist_starterproject.controller;
 
 import android.app.Application;
 import android.database.Cursor;
+
+import bhouse.travellist_starterproject.model.ETADetroitDatabaseHelper;
 
 /**
  * Created by bmarshall on 1/31/17.

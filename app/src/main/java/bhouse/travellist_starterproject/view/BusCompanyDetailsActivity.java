@@ -1,4 +1,4 @@
-package bhouse.travellist_starterproject;
+package bhouse.travellist_starterproject.view;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,7 +16,14 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class DetailActivity extends Activity {
+import bhouse.travellist_starterproject.model.BusCompany;
+import bhouse.travellist_starterproject.model.BusCompanyData;
+import bhouse.travellist_starterproject.R;
+import bhouse.travellist_starterproject.adapters.RouteCursorAdapter;
+import bhouse.travellist_starterproject.adapters.TransitionAdapter;
+import bhouse.travellist_starterproject.controller.Controller;
+
+public class BusCompanyDetailsActivity extends Activity {
 
     public static final String EXTRA_PARAM_ID = "place_id";
     private ListView mList;
@@ -33,7 +40,7 @@ public class DetailActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        setContentView(R.layout.activity_bus_company_details);
         final Controller aController = (Controller) getApplicationContext();
 
         mBusCompany = BusCompanyData.placeList().get(getIntent().getIntExtra(EXTRA_PARAM_ID, 0));
@@ -56,8 +63,8 @@ public class DetailActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 if (routeCursor.moveToPosition(position)) {
-                    Intent intent = new Intent(DetailActivity.this, RouteDetailsActivity.class);
-                    intent.putExtra(RouteDetailsActivity.EXTRA_ROUTE, routeCursor.getString(1));
+                    Intent intent = new Intent(BusCompanyDetailsActivity.this, BusRouteDetailsActivity.class);
+                    intent.putExtra(BusRouteDetailsActivity.EXTRA_ROUTE, routeCursor.getString(1));
                     startActivity(intent);
                 }
             }

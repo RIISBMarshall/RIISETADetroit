@@ -1,4 +1,4 @@
-package bhouse.travellist_starterproject;
+package bhouse.travellist_starterproject.model;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -40,9 +40,21 @@ public class ETADetroitDatabaseHelper extends SQLiteAssetHelper {
         try{
             db = getReadableDatabase();
             Cursor routeDetailsCursor = db.query("routes", new String[]{"_id",
-                    "company", "route_number", "direction1", "direction2", "days_active"},
+                    "company", "route_number", "direction1", "direction2", "days_active", "route_id"},
                     "route_name = ?", new String[]{route}, null, null, null);
             return routeDetailsCursor;
+        } catch (SQLiteException e){
+            System.out.println(e.toString());
+            return null;
+        }
+    }
+
+    public Cursor getRouteStops(String route_id){
+        try{
+            db = getReadableDatabase();
+            Cursor routeStopsCursor = db.query("stop_locations", new String[]{"_id", "stop_name"},
+                    "route_id = ?", new String[]{route_id}, null, null, null);
+            return routeStopsCursor;
         } catch (SQLiteException e){
             System.out.println(e.toString());
             return null;

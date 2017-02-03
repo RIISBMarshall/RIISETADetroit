@@ -1,4 +1,4 @@
-package bhouse.travellist_starterproject;
+package bhouse.travellist_starterproject.adapters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,6 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+
+import bhouse.travellist_starterproject.model.BusCompany;
+import bhouse.travellist_starterproject.model.BusCompanyData;
+import bhouse.travellist_starterproject.R;
 
 /**
  * Created by bmarshall on 1/30/17.
@@ -68,7 +72,7 @@ public class BusCompanyListAdapter extends RecyclerView.Adapter<BusCompanyListAd
     // 2
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_buses, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_bus_company_list, parent, false);
         return new ViewHolder(view);
     }
 

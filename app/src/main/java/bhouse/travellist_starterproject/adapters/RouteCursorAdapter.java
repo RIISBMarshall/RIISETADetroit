@@ -1,4 +1,4 @@
-package bhouse.travellist_starterproject;
+package bhouse.travellist_starterproject.adapters;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
+
+import bhouse.travellist_starterproject.R;
 
 /**
  * Created by bmarshall on 2/3/17.
@@ -22,7 +24,7 @@ public class RouteCursorAdapter extends CursorAdapter {
     // you don't bind any data to the view at this point.
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.route_list_layout, parent, false);
+        return LayoutInflater.from(context).inflate(R.layout.adapter_route_cursor, parent, false);
     }
 
     // The bindView method is used to bind all data to a given view
