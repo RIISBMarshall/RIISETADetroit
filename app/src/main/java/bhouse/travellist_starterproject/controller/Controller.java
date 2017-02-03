@@ -22,4 +22,10 @@ public class Controller extends Application {
         Cursor routeDetailsCursor = ETADetroitDatabaseHelper.getRouteDetails(route);
         return routeDetailsCursor;
     }
+
+    public Cursor getRouteStops(String route_id){
+        ETADetroitDatabaseHelper ETADetroitDatabaseHelper = new ETADetroitDatabaseHelper(this);
+        Cursor routeStopsCursor = ETADetroitDatabaseHelper.getRouteStops(route_id);
+        return routeStopsCursor;
+    }
 }

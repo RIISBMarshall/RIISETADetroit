@@ -14,8 +14,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:textAppearanceLarge"
         android:textColor="@android:color/white"
-        android:gravity="left"
-        />
+        android:gravity="left" />
 
     <ListView
         android:id="@+id/stopList"
