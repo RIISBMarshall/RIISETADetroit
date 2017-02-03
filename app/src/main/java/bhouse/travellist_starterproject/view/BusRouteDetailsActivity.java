@@ -13,11 +13,7 @@ public class BusRouteDetailsActivity extends Activity {
 
     private Cursor routeDetailsCursor;
     public static final String EXTRA_ROUTE = "route";
-    private TextView route_name;
-    private TextView route_number;
-    private TextView direction1;
-    private TextView direction2;
-    private TextView days_active;
+    private TextView routeDetails;
     private String route;
     String routeId;
 
@@ -28,11 +24,7 @@ public class BusRouteDetailsActivity extends Activity {
         final Controller aController = (Controller) getApplicationContext();
         Intent intent = getIntent();
         route = intent.getStringExtra(EXTRA_ROUTE);
-        route_name = (TextView) findViewById(R.id.route_name);
-        route_number = (TextView) findViewById(R.id.route_number);
-        direction1 = (TextView) findViewById(R.id.direction1);
-        direction2 = (TextView) findViewById(R.id.direction2);
-        days_active = (TextView) findViewById(R.id.days_active);
+        routeDetails = (TextView) findViewById(R.id.routeDetails);
         getRouteDetails(aController);
     }
 
@@ -40,11 +32,13 @@ public class BusRouteDetailsActivity extends Activity {
         routeDetailsCursor = aController.getRouteDetails(route);
 
         if (routeDetailsCursor.moveToFirst()) {
-            route_name.setText("ROUTE: " + route);
-            route_number.setText("ROUTE NUMBER: " + routeDetailsCursor.getString(2));
-            direction1.setText("DIRECTION 1: " + routeDetailsCursor.getString(3));
-            direction2.setText("DIRECTION 2: " + routeDetailsCursor.getString(4));
-            days_active.setText("DAYS ACTIVE: " + routeDetailsCursor.getString(5));
+            routeDetails.setText("ROUTE DETAILS" +
+                    "\n\nROUTE: " + route +
+                    "\nROUTE NUMBER: " + routeDetailsCursor.getString(2) +
+                    "\nDIRECTION 1: " + routeDetailsCursor.getString(3) +
+                    "\nDIRECTION 2: " + routeDetailsCursor.getString(4) +
+                    "\nDAYS ACTIVE: " + routeDetailsCursor.getString(5));
+
             routeId = routeDetailsCursor.getString(6);
         }
     }
