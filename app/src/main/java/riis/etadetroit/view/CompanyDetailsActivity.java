@@ -31,7 +31,6 @@ public class CompanyDetailsActivity extends Activity {
     private LinearLayout mRevealView;
 
     private Cursor routeCursor;
-    private RouteCursorAdapter routeAdapter;
     int defaultColor;
     String companyName;
     int companyImageResourceId;
@@ -76,7 +75,7 @@ public class CompanyDetailsActivity extends Activity {
 
     private void setUpAdapter(Controller aController) {
         routeCursor = aController.getRoutes(companyName);
-        routeAdapter = new RouteCursorAdapter(this, routeCursor);
+        RouteCursorAdapter routeAdapter = new RouteCursorAdapter(this, routeCursor);
         mList.setAdapter(routeAdapter);
     }
 

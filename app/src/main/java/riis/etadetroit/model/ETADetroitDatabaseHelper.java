@@ -15,13 +15,10 @@ public class ETADetroitDatabaseHelper extends SQLiteAssetHelper {
 
     private static String DB_NAME = "ETADetroitDatabase.db";
 
-    private final Context myContext;
-
     private SQLiteDatabase db;
 
     public ETADetroitDatabaseHelper(Context context) {
         super(context, DB_NAME, null, 1);
-        this.myContext = context;
     }
 
     public Cursor getCompanyNames(){

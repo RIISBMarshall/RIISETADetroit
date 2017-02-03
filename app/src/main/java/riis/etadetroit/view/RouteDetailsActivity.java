@@ -14,12 +14,10 @@ import riis.etadetroit.controller.Controller;
 
 public class RouteDetailsActivity extends Activity {
 
-    private Cursor routeDetailsCursor;
     public static final String EXTRA_ROUTE = "route";
     private TextView routeDetails;
     private String route;
     String routeId;
-    private ListView stopList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +32,7 @@ public class RouteDetailsActivity extends Activity {
     }
 
     private void getRouteDetails(Controller aController){
-        routeDetailsCursor = aController.getRouteDetails(route);
+        Cursor routeDetailsCursor = aController.getRouteDetails(route);
 
         if (routeDetailsCursor.moveToFirst()) {
             routeDetails.setText("ROUTE DETAILS" +

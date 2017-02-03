@@ -26,9 +26,7 @@ public class MainActivity extends Activity {
 
     private Menu menu;
     private boolean isListView;
-    private RecyclerView mRecyclerView;
     private StaggeredGridLayoutManager mStaggeredLayoutManager;
-    private CompanyListAdapter mAdapter;
     private Toolbar toolbar;
 
     @Override
@@ -40,10 +38,10 @@ public class MainActivity extends Activity {
 
         isListView = true;
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.list);
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.list);
         mStaggeredLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mStaggeredLayoutManager);
-        mAdapter = new CompanyListAdapter(this, aController);
+        CompanyListAdapter mAdapter = new CompanyListAdapter(this, aController);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(onItemClickListener);
         toolbar = (Toolbar) findViewById(R.id.toolbar);

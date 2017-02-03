@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.database.Cursor;
 
+import java.util.ArrayList;
+
 import riis.etadetroit.model.Company;
 import riis.etadetroit.model.CompanyData;
 import riis.etadetroit.model.ETADetroitDatabaseHelper;

@@ -20,7 +20,8 @@
         <activity
             android:name="riis.etadetroit.view.CompanyDetailsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="riis.etadetroit.view.RouteDetailsActivity"></activity>
+        <activity
+            android:name="riis.etadetroit.view.RouteDetailsActivity"/>
     </application>
 
 </manifest>

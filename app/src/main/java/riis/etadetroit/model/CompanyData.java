@@ -6,15 +6,15 @@ import java.util.ArrayList;
 
 public class CompanyData {
 
-    private Cursor companyNames;
+
     private ArrayList<Company> companyList;
 
-    public CompanyData(Cursor companyNames) {
-        this.companyNames = companyNames;
+    public CompanyData(Cursor companyNamesFromDB) {
+        Cursor companyNames = companyNamesFromDB;
 
         companyList = new ArrayList<>();
 
-        while (this.companyNames.moveToNext()) {
+        while (companyNames.moveToNext()) {
             Company company = new Company();
             company.setName(companyNames.getString(0));
             company.setImageName(companyNames.getString(0).replaceAll("\\s+", "").toLowerCase());
