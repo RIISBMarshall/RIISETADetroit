@@ -13,24 +13,8 @@
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:scaleType="centerCrop"
-            android:transitionName="tImage" />
-
-        <LinearLayout
-            android:id="@+id/llEditTextHolder"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#95000000">
-
-            <EditText
-                android:id="@+id/etTodo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textColor="@android:color/white" />
-
-        </LinearLayout>
+            android:transitionName="tImage"
+            android:contentDescription="@string/desc"/>
 
         <include
             android:id="@+id/toolbar"
@@ -67,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
-        android:text="ROUTES"
+        android:text="@string/routes"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@android:color/white"
         android:gravity="center"/>

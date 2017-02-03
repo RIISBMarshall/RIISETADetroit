@@ -53,9 +53,8 @@ public class CompanyDetailsActivity extends Activity {
         mImageView = (ImageView) findViewById(R.id.busImage);
         mTitle = (TextView) findViewById(R.id.textView);
         mTitleHolder = (LinearLayout) findViewById(R.id.busNameHolder);
-        mRevealView = (LinearLayout) findViewById(R.id.llEditTextHolder);
         defaultColor = getResources().getColor(R.color.primary_dark);
-        mRevealView.setVisibility(View.INVISIBLE);
+
 
         setUpAdapter(aController);
         loadBusCompany();
@@ -109,7 +108,6 @@ public class CompanyDetailsActivity extends Activity {
     private void applyPalette(Palette mPalette) {
         getWindow().setBackgroundDrawable(new ColorDrawable(mPalette.getDarkMutedColor(defaultColor)));
         mTitleHolder.setBackgroundColor(mPalette.getMutedColor(defaultColor));
-        mRevealView.setBackgroundColor(mPalette.getLightVibrantColor(defaultColor));
     }
 
 }
