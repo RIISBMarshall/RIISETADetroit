@@ -40,7 +40,7 @@ public class CompanyDetailsActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bus_company_details);
+        setContentView(R.layout.activity_company_details);
         final Controller aController = (Controller) getApplicationContext();
 
         mCompany = CompanyData.placeList().get(getIntent().getIntExtra(EXTRA_PARAM_ID, 0));

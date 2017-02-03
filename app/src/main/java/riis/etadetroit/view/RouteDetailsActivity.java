@@ -24,7 +24,7 @@ public class RouteDetailsActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bus_route_details);
+        setContentView(R.layout.activity_route_details);
         final Controller aController = (Controller) getApplicationContext();
         Intent intent = getIntent();
         route = intent.getStringExtra(EXTRA_ROUTE);
