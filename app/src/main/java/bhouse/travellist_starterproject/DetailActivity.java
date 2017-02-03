@@ -11,11 +11,9 @@ import android.support.v7.graphics.Palette;
 import android.transition.Transition;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 public class DetailActivity extends Activity {
@@ -28,7 +26,7 @@ public class DetailActivity extends Activity {
     private LinearLayout mRevealView;
     private BusCompany mBusCompany;
     private Cursor routeCursor;
-    private CursorAdapter routeAdapter;
+    private RouteCursorAdapter routeAdapter;
     int defaultColor;
 
 
@@ -49,7 +47,7 @@ public class DetailActivity extends Activity {
         mRevealView.setVisibility(View.INVISIBLE);
 
         setUpAdapter(aController);
-        loadPlace();
+        loadBusCompany();
         windowTransition();
         getPhoto();
 
@@ -68,14 +66,11 @@ public class DetailActivity extends Activity {
 
     private void setUpAdapter(Controller aController) {
         routeCursor = aController.getRoutes(mBusCompany.name);
-        routeAdapter = new SimpleCursorAdapter(DetailActivity.this, R.layout.list_white_text, routeCursor,
-                new String[]{"route_name"},
-                new int[]{R.id.list_content}, 0);
-
+        routeAdapter = new RouteCursorAdapter(this, routeCursor);
         mList.setAdapter(routeAdapter);
     }
 
-    private void loadPlace() {
+    private void loadBusCompany() {
         mTitle.setText(mBusCompany.name);
         mImageView.setImageResource(mBusCompany.getImageResourceId(this));
     }

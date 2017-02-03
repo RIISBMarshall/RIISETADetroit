@@ -10,14 +10,14 @@ import android.database.Cursor;
 public class Controller extends Application {
 
     public Cursor getRoutes(String company) {
-        TravelListDatabaseHelper travelListDatabaseHelper = new TravelListDatabaseHelper(this);
-        Cursor routeCursor = travelListDatabaseHelper.getRoutes(company);
+        ETADetroitDatabaseHelper ETADetroitDatabaseHelper = new ETADetroitDatabaseHelper(this);
+        Cursor routeCursor = ETADetroitDatabaseHelper.getRoutes(company);
         return routeCursor;
     }
 
     public Cursor getRouteDetails(String route){
-        TravelListDatabaseHelper travelListDatabaseHelper = new TravelListDatabaseHelper(this);
-        Cursor routeDetailsCursor = travelListDatabaseHelper.getRouteDetails(route);
+        ETADetroitDatabaseHelper ETADetroitDatabaseHelper = new ETADetroitDatabaseHelper(this);
+        Cursor routeDetailsCursor = ETADetroitDatabaseHelper.getRouteDetails(route);
         return routeDetailsCursor;
     }
 }

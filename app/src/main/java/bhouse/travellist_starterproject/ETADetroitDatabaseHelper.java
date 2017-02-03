@@ -11,7 +11,7 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
  * Created by bmarshall on 1/31/17.
  */
 
-public class TravelListDatabaseHelper extends SQLiteAssetHelper {
+public class ETADetroitDatabaseHelper extends SQLiteAssetHelper {
 
     private static String DB_NAME = "ETADetroitDatabase.db";
 
@@ -19,7 +19,7 @@ public class TravelListDatabaseHelper extends SQLiteAssetHelper {
 
     private SQLiteDatabase db;
 
-    public TravelListDatabaseHelper(Context context) {
+    public ETADetroitDatabaseHelper(Context context) {
         super(context, DB_NAME, null, 1);
         this.myContext = context;
     }
@@ -27,8 +27,8 @@ public class TravelListDatabaseHelper extends SQLiteAssetHelper {
     public Cursor getRoutes(String company) {
         try {
             db = getReadableDatabase();
-            Cursor routeCursor = db.query("routes", new String[]{"_id", "route_name"},
-                    "company = ?", new String[]{company}, null, null, null);
+            Cursor routeCursor = db.query("routes", new String[]{"_id", "route_name", "route_number"},
+                    "company = ?", new String[]{company}, null, null, "cast(route_number as unsigned)");
             return routeCursor;
         } catch (SQLiteException e) {
             System.out.println(e.toString());

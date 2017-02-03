@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
   private boolean isListView;
   private RecyclerView mRecyclerView;
   private StaggeredGridLayoutManager mStaggeredLayoutManager;
-  private TravelListAdapter mAdapter;
+  private BusCompanyListAdapter mAdapter;
   private Toolbar toolbar;
 
   @Override
@@ -37,14 +37,14 @@ public class MainActivity extends Activity {
     mRecyclerView = (RecyclerView) findViewById(R.id.list);
     mStaggeredLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
     mRecyclerView.setLayoutManager(mStaggeredLayoutManager);
-    mAdapter = new TravelListAdapter(this);
+    mAdapter = new BusCompanyListAdapter(this);
     mRecyclerView.setAdapter(mAdapter);
     mAdapter.setOnItemClickListener(onItemClickListener);
     toolbar = (Toolbar) findViewById(R.id.toolbar);
     setUpActionBar();
   }
 
-  TravelListAdapter.OnItemClickListener onItemClickListener = new TravelListAdapter.OnItemClickListener() {
+  BusCompanyListAdapter.OnItemClickListener onItemClickListener = new BusCompanyListAdapter.OnItemClickListener() {
     @Override
     public void onItemClick(View v, int position) {
       Intent intent = new Intent(MainActivity.this, DetailActivity.class);

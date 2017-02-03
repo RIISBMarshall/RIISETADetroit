@@ -18,13 +18,13 @@ import com.squareup.picasso.Picasso;
  * Created by bmarshall on 1/30/17.
  */
 
-public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.ViewHolder> {
+public class BusCompanyListAdapter extends RecyclerView.Adapter<BusCompanyListAdapter.ViewHolder> {
 
     Context mContext;
     OnItemClickListener mItemClickListener;
 
     // 2
-    public TravelListAdapter(Context context) {
+    public BusCompanyListAdapter(Context context) {
         this.mContext = context;
     }
 
