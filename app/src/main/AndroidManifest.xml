@@ -18,9 +18,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="riis.etadetroit.view.BusCompanyDetailsActivity"
+            android:name="riis.etadetroit.view.CompanyDetailsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="riis.etadetroit.view.BusRouteDetailsActivity"></activity>
+        <activity android:name="riis.etadetroit.view.RouteDetailsActivity"></activity>
     </application>
 
 </manifest>

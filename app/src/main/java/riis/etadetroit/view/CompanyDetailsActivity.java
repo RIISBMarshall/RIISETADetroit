@@ -16,14 +16,14 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import riis.etadetroit.model.BusCompany;
-import riis.etadetroit.model.BusCompanyData;
+import riis.etadetroit.model.Company;
+import riis.etadetroit.model.CompanyData;
 import riis.etadetroit.R;
 import riis.etadetroit.adapters.RouteCursorAdapter;
 import riis.etadetroit.adapters.TransitionAdapter;
 import riis.etadetroit.controller.Controller;
 
-public class BusCompanyDetailsActivity extends Activity {
+public class CompanyDetailsActivity extends Activity {
 
     public static final String EXTRA_PARAM_ID = "place_id";
     private ListView mList;
@@ -31,7 +31,7 @@ public class BusCompanyDetailsActivity extends Activity {
     private TextView mTitle;
     private LinearLayout mTitleHolder;
     private LinearLayout mRevealView;
-    private BusCompany mBusCompany;
+    private Company mCompany;
     private Cursor routeCursor;
     private RouteCursorAdapter routeAdapter;
     int defaultColor;
@@ -43,7 +43,7 @@ public class BusCompanyDetailsActivity extends Activity {
         setContentView(R.layout.activity_bus_company_details);
         final Controller aController = (Controller) getApplicationContext();
 
-        mBusCompany = BusCompanyData.placeList().get(getIntent().getIntExtra(EXTRA_PARAM_ID, 0));
+        mCompany = CompanyData.placeList().get(getIntent().getIntExtra(EXTRA_PARAM_ID, 0));
 
         mList = (ListView) findViewById(R.id.list);
         mImageView = (ImageView) findViewById(R.id.busImage);
@@ -63,8 +63,8 @@ public class BusCompanyDetailsActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 if (routeCursor.moveToPosition(position)) {
-                    Intent intent = new Intent(BusCompanyDetailsActivity.this, BusRouteDetailsActivity.class);
-                    intent.putExtra(BusRouteDetailsActivity.EXTRA_ROUTE, routeCursor.getString(1));
+                    Intent intent = new Intent(CompanyDetailsActivity.this, RouteDetailsActivity.class);
+                    intent.putExtra(RouteDetailsActivity.EXTRA_ROUTE, routeCursor.getString(1));
                     startActivity(intent);
                 }
             }
@@ -72,14 +72,14 @@ public class BusCompanyDetailsActivity extends Activity {
     }
 
     private void setUpAdapter(Controller aController) {
-        routeCursor = aController.getRoutes(mBusCompany.name);
+        routeCursor = aController.getRoutes(mCompany.name);
         routeAdapter = new RouteCursorAdapter(this, routeCursor);
         mList.setAdapter(routeAdapter);
     }
 
     private void loadBusCompany() {
-        mTitle.setText(mBusCompany.name);
-        mImageView.setImageResource(mBusCompany.getImageResourceId(this));
+        mTitle.setText(mCompany.name);
+        mImageView.setImageResource(mCompany.getImageResourceId(this));
     }
 
     private void windowTransition() {
@@ -93,7 +93,7 @@ public class BusCompanyDetailsActivity extends Activity {
     }
 
     private void getPhoto() {
-        Bitmap photo = BitmapFactory.decodeResource(getResources(), mBusCompany.getImageResourceId(this));
+        Bitmap photo = BitmapFactory.decodeResource(getResources(), mCompany.getImageResourceId(this));
         colorize(photo);
     }
 

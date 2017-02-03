@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 import android.support.v4.util.Pair;
 import android.widget.Toolbar;
 
-import riis.etadetroit.adapters.BusCompanyListAdapter;
+import riis.etadetroit.adapters.CompanyListAdapter;
 import riis.etadetroit.R;
 
 
@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
   private boolean isListView;
   private RecyclerView mRecyclerView;
   private StaggeredGridLayoutManager mStaggeredLayoutManager;
-  private BusCompanyListAdapter mAdapter;
+  private CompanyListAdapter mAdapter;
   private Toolbar toolbar;
 
   @Override
@@ -40,18 +40,18 @@ public class MainActivity extends Activity {
     mRecyclerView = (RecyclerView) findViewById(R.id.list);
     mStaggeredLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
     mRecyclerView.setLayoutManager(mStaggeredLayoutManager);
-    mAdapter = new BusCompanyListAdapter(this);
+    mAdapter = new CompanyListAdapter(this);
     mRecyclerView.setAdapter(mAdapter);
     mAdapter.setOnItemClickListener(onItemClickListener);
     toolbar = (Toolbar) findViewById(R.id.toolbar);
     setUpActionBar();
   }
 
-  BusCompanyListAdapter.OnItemClickListener onItemClickListener = new BusCompanyListAdapter.OnItemClickListener() {
+  CompanyListAdapter.OnItemClickListener onItemClickListener = new CompanyListAdapter.OnItemClickListener() {
     @Override
     public void onItemClick(View v, int position) {
-      Intent intent = new Intent(MainActivity.this, BusCompanyDetailsActivity.class);
-      intent.putExtra(BusCompanyDetailsActivity.EXTRA_PARAM_ID, position);
+      Intent intent = new Intent(MainActivity.this, CompanyDetailsActivity.class);
+      intent.putExtra(CompanyDetailsActivity.EXTRA_PARAM_ID, position);
       //startActivity(intent);
       ImageView busImage = (ImageView) v.findViewById(R.id.busImage);
       LinearLayout busNameHolder = (LinearLayout) v.findViewById(R.id.busNameHolder);

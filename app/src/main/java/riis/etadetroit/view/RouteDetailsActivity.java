@@ -12,7 +12,7 @@ import android.widget.TextView;
 import riis.etadetroit.R;
 import riis.etadetroit.controller.Controller;
 
-public class BusRouteDetailsActivity extends Activity {
+public class RouteDetailsActivity extends Activity {
 
     private Cursor routeDetailsCursor;
     public static final String EXTRA_ROUTE = "route";
@@ -52,7 +52,7 @@ public class BusRouteDetailsActivity extends Activity {
     private void getRouteStops(Controller aController){
         Cursor routeStopsCursor = aController.getRouteStops(routeId);
 
-        CursorAdapter routeStopsCursorAdapter = new SimpleCursorAdapter(this, R.layout.list_white_text, routeStopsCursor, new String[]{"stop_name"},
+        CursorAdapter routeStopsCursorAdapter = new SimpleCursorAdapter(this, R.layout.adapter_route_stops_cursor, routeStopsCursor, new String[]{"stop_name"},
                 new int[]{R.id.list_content}, 0);
         ListView stopList = (ListView) findViewById(R.id.stopList);
         stopList.setAdapter(routeStopsCursorAdapter);
