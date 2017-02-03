@@ -11,6 +11,12 @@ import riis.etadetroit.model.ETADetroitDatabaseHelper;
 
 public class Controller extends Application {
 
+    public Cursor getCompanyNames(){
+        ETADetroitDatabaseHelper ETADetroitDatabaseHelper = new ETADetroitDatabaseHelper(this);
+        Cursor companyNamesCursor = ETADetroitDatabaseHelper.getCompanyNames();
+        return companyNamesCursor;
+    }
+
     public Cursor getRoutes(String company) {
         ETADetroitDatabaseHelper ETADetroitDatabaseHelper = new ETADetroitDatabaseHelper(this);
         Cursor routeCursor = ETADetroitDatabaseHelper.getRoutes(company);
