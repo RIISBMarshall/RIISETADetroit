@@ -1,4 +1,4 @@
-package bhouse.travellist_starterproject.adapters;
+package riis.etadetroit.adapters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -14,9 +14,9 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import bhouse.travellist_starterproject.model.BusCompany;
-import bhouse.travellist_starterproject.model.BusCompanyData;
-import bhouse.travellist_starterproject.R;
+import riis.etadetroit.model.BusCompany;
+import riis.etadetroit.model.BusCompanyData;
+import riis.etadetroit.R;
 
 /**
  * Created by bmarshall on 1/30/17.

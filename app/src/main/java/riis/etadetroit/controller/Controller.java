@@ -1,9 +1,9 @@
-package bhouse.travellist_starterproject.controller;
+package riis.etadetroit.controller;
 
 import android.app.Application;
 import android.database.Cursor;
 
-import bhouse.travellist_starterproject.model.ETADetroitDatabaseHelper;
+import riis.etadetroit.model.ETADetroitDatabaseHelper;
 
 /**
  * Created by bmarshall on 1/31/17.

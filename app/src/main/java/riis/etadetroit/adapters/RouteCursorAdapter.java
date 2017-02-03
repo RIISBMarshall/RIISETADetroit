@@ -1,4 +1,4 @@
-package bhouse.travellist_starterproject.adapters;
+package riis.etadetroit.adapters;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
-import bhouse.travellist_starterproject.R;
+import riis.etadetroit.R;
 
 /**
  * Created by bmarshall on 2/3/17.

@@ -1,4 +1,4 @@
-package bhouse.travellist_starterproject.model;
+package riis.etadetroit.model;
 
 import android.content.Context;
 

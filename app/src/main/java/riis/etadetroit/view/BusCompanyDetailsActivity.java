@@ -1,4 +1,4 @@
-package bhouse.travellist_starterproject.view;
+package riis.etadetroit.view;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,12 +16,12 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import bhouse.travellist_starterproject.model.BusCompany;
-import bhouse.travellist_starterproject.model.BusCompanyData;
-import bhouse.travellist_starterproject.R;
-import bhouse.travellist_starterproject.adapters.RouteCursorAdapter;
-import bhouse.travellist_starterproject.adapters.TransitionAdapter;
-import bhouse.travellist_starterproject.controller.Controller;
+import riis.etadetroit.model.BusCompany;
+import riis.etadetroit.model.BusCompanyData;
+import riis.etadetroit.R;
+import riis.etadetroit.adapters.RouteCursorAdapter;
+import riis.etadetroit.adapters.TransitionAdapter;
+import riis.etadetroit.controller.Controller;
 
 public class BusCompanyDetailsActivity extends Activity {
 

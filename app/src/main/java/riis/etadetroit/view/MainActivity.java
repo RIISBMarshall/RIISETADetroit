@@ -1,4 +1,4 @@
-package bhouse.travellist_starterproject.view;
+package riis.etadetroit.view;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,8 +17,8 @@ import android.widget.LinearLayout;
 import android.support.v4.util.Pair;
 import android.widget.Toolbar;
 
-import bhouse.travellist_starterproject.adapters.BusCompanyListAdapter;
-import bhouse.travellist_starterproject.R;
+import riis.etadetroit.adapters.BusCompanyListAdapter;
+import riis.etadetroit.R;
 
 
 public class MainActivity extends Activity {

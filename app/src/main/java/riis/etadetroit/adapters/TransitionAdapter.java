@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package bhouse.travellist_starterproject.adapters;
+package riis.etadetroit.adapters;
 
 import android.transition.Transition;
 
