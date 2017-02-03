@@ -14,8 +14,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import riis.etadetroit.model.Company;
-import riis.etadetroit.model.CompanyData;
+import riis.etadetroit.controller.Controller;
 import riis.etadetroit.R;
 
 /**
@@ -24,12 +23,13 @@ import riis.etadetroit.R;
 
 public class CompanyListAdapter extends RecyclerView.Adapter<CompanyListAdapter.ViewHolder> {
 
-    Context mContext;
-    OnItemClickListener mItemClickListener;
-
+    private Context mContext;
+    private OnItemClickListener mItemClickListener;
+    private Controller aController;
     // 2
-    public CompanyListAdapter(Context context) {
+    public CompanyListAdapter(Context context, Controller aController) {
         this.mContext = context;
+        this.aController = aController;
     }
 
     // 3
@@ -66,7 +66,7 @@ public class CompanyListAdapter extends RecyclerView.Adapter<CompanyListAdapter.
 
     @Override
     public int getItemCount() {
-        return new CompanyData().placeList().size();
+        return aController.getCompanyListSize();
     }
 
     // 2
@@ -79,11 +79,10 @@ public class CompanyListAdapter extends RecyclerView.Adapter<CompanyListAdapter.
     // 3
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        final Company company = new CompanyData().placeList().get(position);
-        holder.placeName.setText(company.name);
-        Picasso.with(mContext).load(company.getImageResourceId(mContext)).into(holder.placeImage);
+        holder.placeName.setText(aController.getCompanyName(position));
+        Picasso.with(mContext).load(aController.getCompanyImageResourceId(mContext, position)).into(holder.placeImage);
 
-        Bitmap photo = BitmapFactory.decodeResource(mContext.getResources(), company.getImageResourceId(mContext));
+        Bitmap photo = BitmapFactory.decodeResource(mContext.getResources(), aController.getCompanyImageResourceId(mContext, position));
 
         Palette.generateAsync(photo, new Palette.PaletteAsyncListener() {
             public void onGenerated(Palette palette) {

@@ -27,7 +27,7 @@ public class ETADetroitDatabaseHelper extends SQLiteAssetHelper {
     public Cursor getCompanyNames(){
         try {
             db = getReadableDatabase();
-            Cursor companyCursor = db.query(true, "routes", new String[]{"_id", "company"},
+            Cursor companyCursor = db.query(true, "routes", new String[]{"company"},
                     null, null, null, null, null, null);
             return companyCursor;
         } catch (SQLiteException e) {

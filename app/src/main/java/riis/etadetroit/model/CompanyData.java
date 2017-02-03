@@ -1,20 +1,33 @@
 package riis.etadetroit.model;
 
+import android.database.Cursor;
+
 import java.util.ArrayList;
 
 public class CompanyData {
 
-    public static String[] placeNameArray = {"SmartBus", "DDOT", "RefleX"};
+    private Cursor companyNames;
+    private ArrayList<Company> companyList;
 
-    public static ArrayList<Company> placeList() {
-        ArrayList<Company> list = new ArrayList<>();
-        for (int i = 0; i < placeNameArray.length; i++) {
+    public CompanyData(Cursor companyNames) {
+        this.companyNames = companyNames;
+
+        companyList = new ArrayList<>();
+
+        while (this.companyNames.moveToNext()) {
             Company company = new Company();
-            company.name = placeNameArray[i];
-            company.imageName = placeNameArray[i].replaceAll("\\s+", "").toLowerCase();
+            company.setName(companyNames.getString(0));
+            company.setImageName(companyNames.getString(0).replaceAll("\\s+", "").toLowerCase());
 
-            list.add(company);
+            companyList.add(company);
         }
-        return (list);
+    }
+
+    public Company getCompany(int position) {
+        return companyList.get(position);
+    }
+
+    public int getCompanyListSize(){
+        return companyList.size();
     }
 }

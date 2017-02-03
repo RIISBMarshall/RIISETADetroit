@@ -19,99 +19,102 @@ import android.widget.Toolbar;
 
 import riis.etadetroit.adapters.CompanyListAdapter;
 import riis.etadetroit.R;
+import riis.etadetroit.controller.Controller;
 
 
 public class MainActivity extends Activity {
 
-  private Menu menu;
-  private boolean isListView;
-  private RecyclerView mRecyclerView;
-  private StaggeredGridLayoutManager mStaggeredLayoutManager;
-  private CompanyListAdapter mAdapter;
-  private Toolbar toolbar;
+    private Menu menu;
+    private boolean isListView;
+    private RecyclerView mRecyclerView;
+    private StaggeredGridLayoutManager mStaggeredLayoutManager;
+    private CompanyListAdapter mAdapter;
+    private Toolbar toolbar;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-
-    isListView = true;
-
-    mRecyclerView = (RecyclerView) findViewById(R.id.list);
-    mStaggeredLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
-    mRecyclerView.setLayoutManager(mStaggeredLayoutManager);
-    mAdapter = new CompanyListAdapter(this);
-    mRecyclerView.setAdapter(mAdapter);
-    mAdapter.setOnItemClickListener(onItemClickListener);
-    toolbar = (Toolbar) findViewById(R.id.toolbar);
-    setUpActionBar();
-  }
-
-  CompanyListAdapter.OnItemClickListener onItemClickListener = new CompanyListAdapter.OnItemClickListener() {
     @Override
-    public void onItemClick(View v, int position) {
-      Intent intent = new Intent(MainActivity.this, CompanyDetailsActivity.class);
-      intent.putExtra(CompanyDetailsActivity.EXTRA_PARAM_ID, position);
-      //startActivity(intent);
-      ImageView busImage = (ImageView) v.findViewById(R.id.busImage);
-      LinearLayout busNameHolder = (LinearLayout) v.findViewById(R.id.busNameHolder);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-      View navigationBar = findViewById(android.R.id.navigationBarBackground);
-      View statusBar = findViewById(android.R.id.statusBarBackground);
-      
-      Pair<View, String> imagePair = Pair.create((View) busImage, "tImage");
-      Pair<View, String> holderPair = Pair.create((View) busNameHolder, "tNameHolder");
+        final Controller aController = (Controller) getApplicationContext();
 
-      Pair<View, String> navPair = Pair.create(navigationBar,
-              Window.NAVIGATION_BAR_BACKGROUND_TRANSITION_NAME);
-      Pair<View, String> statusPair = Pair.create(statusBar, Window.STATUS_BAR_BACKGROUND_TRANSITION_NAME);
-      Pair<View, String> toolbarPair = Pair.create((View)toolbar, "tActionBar");
-      ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this,
-              imagePair, holderPair);
-      ActivityCompat.startActivity(MainActivity.this, intent, options.toBundle());
+        isListView = true;
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.list);
+        mStaggeredLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(mStaggeredLayoutManager);
+        mAdapter = new CompanyListAdapter(this, aController);
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(onItemClickListener);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setUpActionBar();
     }
-  };
 
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    // Inflate the menu; this adds items to the action bar if it is present.
-    MenuInflater inflater = getMenuInflater();
-    inflater.inflate(R.menu.menu_main, menu);
-    this.menu = menu;
-    return true;
-  }
+    CompanyListAdapter.OnItemClickListener onItemClickListener = new CompanyListAdapter.OnItemClickListener() {
+        @Override
+        public void onItemClick(View v, int position) {
+            Intent intent = new Intent(MainActivity.this, CompanyDetailsActivity.class);
+            intent.putExtra(CompanyDetailsActivity.EXTRA_PARAM_ID, position);
+            //startActivity(intent);
+            ImageView busImage = (ImageView) v.findViewById(R.id.busImage);
+            LinearLayout busNameHolder = (LinearLayout) v.findViewById(R.id.busNameHolder);
 
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    int id = item.getItemId();
-    if (id == R.id.action_toggle) {
-      toggle();
-      return true;
+            View navigationBar = findViewById(android.R.id.navigationBarBackground);
+            View statusBar = findViewById(android.R.id.statusBarBackground);
+
+            Pair<View, String> imagePair = Pair.create((View) busImage, "tImage");
+            Pair<View, String> holderPair = Pair.create((View) busNameHolder, "tNameHolder");
+
+            Pair<View, String> navPair = Pair.create(navigationBar,
+                    Window.NAVIGATION_BAR_BACKGROUND_TRANSITION_NAME);
+            Pair<View, String> statusPair = Pair.create(statusBar, Window.STATUS_BAR_BACKGROUND_TRANSITION_NAME);
+            Pair<View, String> toolbarPair = Pair.create((View) toolbar, "tActionBar");
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this,
+                    imagePair, holderPair);
+            ActivityCompat.startActivity(MainActivity.this, intent, options.toBundle());
+        }
+    };
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        this.menu = menu;
+        return true;
     }
-    return super.onOptionsItemSelected(item);
-  }
 
-  private void setUpActionBar(){
-    if (toolbar != null) {
-      setActionBar(toolbar);
-      getActionBar().setDisplayHomeAsUpEnabled(false);
-      getActionBar().setDisplayShowTitleEnabled(true);
-      getActionBar().setElevation(7);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_toggle) {
+            toggle();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
-  }
 
-  private void toggle() {
-    MenuItem item = menu.findItem(R.id.action_toggle);
-    if (isListView) {
-      mStaggeredLayoutManager.setSpanCount(2);
-      item.setIcon(R.drawable.ic_action_list);
-      item.setTitle("Show as list");
-      isListView = false;
-    } else {
-      mStaggeredLayoutManager.setSpanCount(1);
-      item.setIcon(R.drawable.ic_action_grid);
-      item.setTitle("Show as grid");
-      isListView = true;
+    private void setUpActionBar() {
+        if (toolbar != null) {
+            setActionBar(toolbar);
+            getActionBar().setDisplayHomeAsUpEnabled(false);
+            getActionBar().setDisplayShowTitleEnabled(true);
+            getActionBar().setElevation(7);
+        }
     }
-  }
+
+    private void toggle() {
+        MenuItem item = menu.findItem(R.id.action_toggle);
+        if (isListView) {
+            mStaggeredLayoutManager.setSpanCount(2);
+            item.setIcon(R.drawable.ic_action_list);
+            item.setTitle("Show as list");
+            isListView = false;
+        } else {
+            mStaggeredLayoutManager.setSpanCount(1);
+            item.setIcon(R.drawable.ic_action_grid);
+            item.setTitle("Show as grid");
+            isListView = true;
+        }
+    }
 }

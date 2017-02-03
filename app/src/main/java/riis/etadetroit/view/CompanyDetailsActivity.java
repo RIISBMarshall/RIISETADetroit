@@ -16,8 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import riis.etadetroit.model.Company;
-import riis.etadetroit.model.CompanyData;
 import riis.etadetroit.R;
 import riis.etadetroit.adapters.RouteCursorAdapter;
 import riis.etadetroit.adapters.TransitionAdapter;
@@ -31,10 +29,13 @@ public class CompanyDetailsActivity extends Activity {
     private TextView mTitle;
     private LinearLayout mTitleHolder;
     private LinearLayout mRevealView;
-    private Company mCompany;
+
     private Cursor routeCursor;
     private RouteCursorAdapter routeAdapter;
     int defaultColor;
+    String companyName;
+    int companyImageResourceId;
+    int companyPosition;
 
 
     @Override
@@ -43,7 +44,10 @@ public class CompanyDetailsActivity extends Activity {
         setContentView(R.layout.activity_company_details);
         final Controller aController = (Controller) getApplicationContext();
 
-        mCompany = CompanyData.placeList().get(getIntent().getIntExtra(EXTRA_PARAM_ID, 0));
+        companyPosition = getIntent().getIntExtra(EXTRA_PARAM_ID, 0);
+
+        companyName = aController.getCompanyName(companyPosition);
+        companyImageResourceId = aController.getCompanyImageResourceId(this, companyPosition);
 
         mList = (ListView) findViewById(R.id.list);
         mImageView = (ImageView) findViewById(R.id.busImage);
@@ -72,14 +76,14 @@ public class CompanyDetailsActivity extends Activity {
     }
 
     private void setUpAdapter(Controller aController) {
-        routeCursor = aController.getRoutes(mCompany.name);
+        routeCursor = aController.getRoutes(companyName);
         routeAdapter = new RouteCursorAdapter(this, routeCursor);
         mList.setAdapter(routeAdapter);
     }
 
     private void loadBusCompany() {
-        mTitle.setText(mCompany.name);
-        mImageView.setImageResource(mCompany.getImageResourceId(this));
+        mTitle.setText(companyName);
+        mImageView.setImageResource(companyImageResourceId);
     }
 
     private void windowTransition() {
@@ -93,7 +97,7 @@ public class CompanyDetailsActivity extends Activity {
     }
 
     private void getPhoto() {
-        Bitmap photo = BitmapFactory.decodeResource(getResources(), mCompany.getImageResourceId(this));
+        Bitmap photo = BitmapFactory.decodeResource(getResources(), companyImageResourceId);
         colorize(photo);
     }
 
