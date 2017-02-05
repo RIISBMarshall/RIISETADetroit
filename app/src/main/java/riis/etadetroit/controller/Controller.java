@@ -13,10 +13,15 @@ import riis.etadetroit.model.ETADetroitDatabaseHelper;
  */
 
 public class Controller extends Application {
+    private ETADetroitDatabaseHelper eTADetroitDatabaseHelper;
+
+    @Override
+    public void onCreate(){
+        eTADetroitDatabaseHelper = new ETADetroitDatabaseHelper(this);
+    }
 
     private Cursor getCompanyNames() {
-        ETADetroitDatabaseHelper ETADetroitDatabaseHelper = new ETADetroitDatabaseHelper(this);
-        return ETADetroitDatabaseHelper.getCompanyNames();
+        return eTADetroitDatabaseHelper.getCompanyNames();
     }
 
     public int getCompanyListSize() {
@@ -38,19 +43,16 @@ public class Controller extends Application {
     }
 
     public Cursor getRoutes(String company) {
-        ETADetroitDatabaseHelper ETADetroitDatabaseHelper = new ETADetroitDatabaseHelper(this);
-        return ETADetroitDatabaseHelper.getRoutes(company);
+        return eTADetroitDatabaseHelper.getRoutes(company);
     }
 
     public Cursor getRouteDetails(String route) {
-        ETADetroitDatabaseHelper ETADetroitDatabaseHelper = new ETADetroitDatabaseHelper(this);
-        Cursor routeDetailsCursor = ETADetroitDatabaseHelper.getRouteDetails(route);
+        Cursor routeDetailsCursor = eTADetroitDatabaseHelper.getRouteDetails(route);
         return routeDetailsCursor;
     }
 
     public Cursor getRouteStops(String route_id) {
-        ETADetroitDatabaseHelper ETADetroitDatabaseHelper = new ETADetroitDatabaseHelper(this);
-        Cursor routeStopsCursor = ETADetroitDatabaseHelper.getRouteStops(route_id);
+        Cursor routeStopsCursor = eTADetroitDatabaseHelper.getRouteStops(route_id);
         return routeStopsCursor;
     }
 }
