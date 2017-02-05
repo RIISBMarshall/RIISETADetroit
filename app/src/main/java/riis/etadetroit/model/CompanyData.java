@@ -7,10 +7,9 @@ import java.util.ArrayList;
 public class CompanyData {
 
 
-    private ArrayList<Company> companyList;
+    private final ArrayList<Company> companyList;
 
-    public CompanyData(Cursor companyNamesFromDB) {
-        Cursor companyNames = companyNamesFromDB;
+    public CompanyData(Cursor companyNames) {
 
         companyList = new ArrayList<>();
 
@@ -27,7 +26,7 @@ public class CompanyData {
         return companyList.get(position);
     }
 
-    public int getCompanyListSize(){
+    public int getCompanyListSize() {
         return companyList.size();
     }
 }

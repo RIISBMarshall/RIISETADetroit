@@ -13,7 +13,7 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 public class ETADetroitDatabaseHelper extends SQLiteAssetHelper {
 
-    private static String DB_NAME = "ETADetroitDatabase.db";
+    private static final String DB_NAME = "ETADetroitDatabase.db";
 
     private SQLiteDatabase db;
 
@@ -21,7 +21,7 @@ public class ETADetroitDatabaseHelper extends SQLiteAssetHelper {
         super(context, DB_NAME, null, 1);
     }
 
-    public Cursor getCompanyNames(){
+    public Cursor getCompanyNames() {
         try {
             db = getReadableDatabase();
             Cursor companyCursor = db.query(true, "routes", new String[]{"company"},
@@ -45,26 +45,26 @@ public class ETADetroitDatabaseHelper extends SQLiteAssetHelper {
         }
     }
 
-    public Cursor getRouteDetails(String route){
-        try{
+    public Cursor getRouteDetails(String route) {
+        try {
             db = getReadableDatabase();
             Cursor routeDetailsCursor = db.query("routes", new String[]{"_id",
-                    "company", "route_number", "direction1", "direction2", "days_active", "route_id"},
+                            "company", "route_number", "direction1", "direction2", "days_active", "route_id"},
                     "route_name = ?", new String[]{route}, null, null, null);
             return routeDetailsCursor;
-        } catch (SQLiteException e){
+        } catch (SQLiteException e) {
             System.out.println(e.toString());
             return null;
         }
     }
 
-    public Cursor getRouteStops(String route_id){
-        try{
+    public Cursor getRouteStops(String route_id) {
+        try {
             db = getReadableDatabase();
             Cursor routeStopsCursor = db.query("stop_locations", new String[]{"_id", "stop_name"},
                     "route_id = ?", new String[]{route_id}, null, null, null);
             return routeStopsCursor;
-        } catch (SQLiteException e){
+        } catch (SQLiteException e) {
             System.out.println(e.toString());
             return null;
         }

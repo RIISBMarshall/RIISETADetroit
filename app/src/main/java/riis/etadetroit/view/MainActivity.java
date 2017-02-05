@@ -11,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.support.v4.util.Pair;
@@ -48,7 +47,7 @@ public class MainActivity extends Activity {
         setUpActionBar();
     }
 
-    CompanyListAdapter.OnItemClickListener onItemClickListener = new CompanyListAdapter.OnItemClickListener() {
+    private final CompanyListAdapter.OnItemClickListener onItemClickListener = new CompanyListAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(View v, int position) {
             Intent intent = new Intent(MainActivity.this, CompanyDetailsActivity.class);
@@ -57,16 +56,11 @@ public class MainActivity extends Activity {
             ImageView busImage = (ImageView) v.findViewById(R.id.busImage);
             LinearLayout busNameHolder = (LinearLayout) v.findViewById(R.id.busNameHolder);
 
-            View navigationBar = findViewById(android.R.id.navigationBarBackground);
-            View statusBar = findViewById(android.R.id.statusBarBackground);
 
             Pair<View, String> imagePair = Pair.create((View) busImage, "tImage");
             Pair<View, String> holderPair = Pair.create((View) busNameHolder, "tNameHolder");
 
-            Pair<View, String> navPair = Pair.create(navigationBar,
-                    Window.NAVIGATION_BAR_BACKGROUND_TRANSITION_NAME);
-            Pair<View, String> statusPair = Pair.create(statusBar, Window.STATUS_BAR_BACKGROUND_TRANSITION_NAME);
-            Pair<View, String> toolbarPair = Pair.create((View) toolbar, "tActionBar");
+
             ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this,
                     imagePair, holderPair);
             ActivityCompat.startActivity(MainActivity.this, intent, options.toBundle());

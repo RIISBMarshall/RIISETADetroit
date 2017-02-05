@@ -17,7 +17,7 @@ public class RouteDetailsActivity extends Activity {
     public static final String EXTRA_ROUTE = "route";
     private TextView routeDetails;
     private String route;
-    String routeId;
+    private String routeId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class RouteDetailsActivity extends Activity {
         getRouteStops(aController);
     }
 
-    private void getRouteDetails(Controller aController){
+    private void getRouteDetails(Controller aController) {
         Cursor routeDetailsCursor = aController.getRouteDetails(route);
 
         if (routeDetailsCursor.moveToFirst()) {
@@ -47,7 +47,7 @@ public class RouteDetailsActivity extends Activity {
         }
     }
 
-    private void getRouteStops(Controller aController){
+    private void getRouteStops(Controller aController) {
         Cursor routeStopsCursor = aController.getRouteStops(routeId);
 
         CursorAdapter routeStopsCursorAdapter = new SimpleCursorAdapter(this, R.layout.adapter_route_stops_cursor, routeStopsCursor, new String[]{"stop_name"},

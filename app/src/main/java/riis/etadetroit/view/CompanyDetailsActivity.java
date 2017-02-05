@@ -28,13 +28,11 @@ public class CompanyDetailsActivity extends Activity {
     private ImageView mImageView;
     private TextView mTitle;
     private LinearLayout mTitleHolder;
-    private LinearLayout mRevealView;
 
     private Cursor routeCursor;
-    int defaultColor;
-    String companyName;
-    int companyImageResourceId;
-    int companyPosition;
+    private int defaultColor;
+    private String companyName;
+    private int companyImageResourceId;
 
 
     @Override
@@ -43,7 +41,7 @@ public class CompanyDetailsActivity extends Activity {
         setContentView(R.layout.activity_company_details);
         final Controller aController = (Controller) getApplicationContext();
 
-        companyPosition = getIntent().getIntExtra(EXTRA_PARAM_ID, 0);
+        int companyPosition = getIntent().getIntExtra(EXTRA_PARAM_ID, 0);
 
         companyName = aController.getCompanyName(companyPosition);
         companyImageResourceId = aController.getCompanyImageResourceId(this, companyPosition);

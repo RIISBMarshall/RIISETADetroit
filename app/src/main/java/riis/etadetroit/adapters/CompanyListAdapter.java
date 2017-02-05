@@ -23,9 +23,10 @@ import riis.etadetroit.R;
 
 public class CompanyListAdapter extends RecyclerView.Adapter<CompanyListAdapter.ViewHolder> {
 
-    private Context mContext;
+    private final Context mContext;
     private OnItemClickListener mItemClickListener;
-    private Controller aController;
+    private final Controller aController;
+
     // 2
     public CompanyListAdapter(Context context, Controller aController) {
         this.mContext = context;
@@ -34,10 +35,10 @@ public class CompanyListAdapter extends RecyclerView.Adapter<CompanyListAdapter.
 
     // 3
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public LinearLayout placeHolder;
-        public LinearLayout placeNameHolder;
-        public TextView placeName;
-        public ImageView placeImage;
+        private final LinearLayout placeHolder;
+        private final LinearLayout placeNameHolder;
+        private final TextView placeName;
+        private final ImageView placeImage;
 
         public ViewHolder(View itemView) {
             super(itemView);
