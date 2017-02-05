@@ -4,8 +4,6 @@ import android.app.Application;
 import android.content.Context;
 import android.database.Cursor;
 
-import riis.etadetroit.model.Company;
-import riis.etadetroit.model.CompanyData;
 import riis.etadetroit.model.ETADetroitDatabaseHelper;
 
 /**
@@ -16,30 +14,32 @@ public class Controller extends Application {
     private ETADetroitDatabaseHelper eTADetroitDatabaseHelper;
 
     @Override
-    public void onCreate(){
+    public void onCreate() {
         eTADetroitDatabaseHelper = new ETADetroitDatabaseHelper(this);
     }
 
-    private Cursor getCompanyNames() {
-        return eTADetroitDatabaseHelper.getCompanyNames();
-    }
-
     public int getCompanyListSize() {
-        CompanyData companyData = new CompanyData(getCompanyNames());
-        return companyData.getCompanyListSize();
-    }
-
-    private Company getCompany(int position) {
-        CompanyData companyData = new CompanyData(getCompanyNames());
-        return companyData.getCompany(position);
+        return eTADetroitDatabaseHelper.getCompanyNames().getCount();
     }
 
     public String getCompanyName(int position) {
-        return getCompany(position).getName();
+        Cursor companyNames = eTADetroitDatabaseHelper.getCompanyNames();
+
+        if (companyNames.moveToPosition(position)) {
+            return companyNames.getString(0);
+        }
+        return null;
     }
 
-    public int getCompanyImageResourceId(Context context, int positon) {
-        return getCompany(positon).getImageResourceId(context);
+    public int getCompanyImageResourceId(Context context, int position) {
+        Cursor companyNames = eTADetroitDatabaseHelper.getCompanyNames();
+        String imageName;
+        if (companyNames.moveToPosition(position)) {
+            imageName = companyNames.getString(0).toLowerCase();
+            return context.getResources().getIdentifier(imageName, "drawable",
+                    context.getPackageName());
+        }
+        return 0;
     }
 
     public Cursor getRoutes(String company) {

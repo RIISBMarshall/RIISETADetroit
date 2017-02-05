@@ -14,7 +14,6 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 public class ETADetroitDatabaseHelper extends SQLiteAssetHelper {
 
     private static final String DB_NAME = "ETADetroitDatabase.db";
-
     private SQLiteDatabase db;
 
     public ETADetroitDatabaseHelper(Context context) {
