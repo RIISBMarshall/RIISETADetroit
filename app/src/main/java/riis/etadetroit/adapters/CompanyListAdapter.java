@@ -34,13 +34,13 @@ public class CompanyListAdapter extends RecyclerView.Adapter<CompanyListAdapter.
     }
 
     // 3
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final LinearLayout placeHolder;
         private final LinearLayout placeNameHolder;
         private final TextView placeName;
         private final ImageView placeImage;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             placeHolder = (LinearLayout) itemView.findViewById(R.id.mainHolder);
             placeName = (TextView) itemView.findViewById(R.id.busName);
@@ -52,7 +52,7 @@ public class CompanyListAdapter extends RecyclerView.Adapter<CompanyListAdapter.
         @Override
         public void onClick(View view) {
             if (mItemClickListener != null) {
-                mItemClickListener.onItemClick(itemView, getPosition());
+                mItemClickListener.onItemClick(itemView, getAdapterPosition());
             }
         }
     }
@@ -84,8 +84,7 @@ public class CompanyListAdapter extends RecyclerView.Adapter<CompanyListAdapter.
         Picasso.with(mContext).load(aController.getCompanyImageResourceId(mContext, position)).into(holder.placeImage);
 
         Bitmap photo = BitmapFactory.decodeResource(mContext.getResources(), aController.getCompanyImageResourceId(mContext, position));
-
-        Palette.generateAsync(photo, new Palette.PaletteAsyncListener() {
+        new Palette.Builder(photo).generate(new Palette.PaletteAsyncListener() {
             public void onGenerated(Palette palette) {
                 int bgColor = palette.getMutedColor(mContext.getResources().getColor(android.R.color.black));
                 holder.placeNameHolder.setBackgroundColor(bgColor);

@@ -20,12 +20,11 @@ public class ETADetroitDatabaseHelper extends SQLiteAssetHelper {
         super(context, DB_NAME, null, 1);
     }
 
-    public Cursor getCompanyNames() {
+    private Cursor getCompanyNames() {
         try {
             db = getReadableDatabase();
-            Cursor companyCursor = db.query(true, "routes", new String[]{"company"},
+            return db.query(true, "routes", new String[]{"company"},
                     null, null, null, null, null, null);
-            return companyCursor;
         } catch (SQLiteException e) {
             System.out.println(e.toString());
             return null;
@@ -35,9 +34,8 @@ public class ETADetroitDatabaseHelper extends SQLiteAssetHelper {
     public Cursor getRoutes(String company) {
         try {
             db = getReadableDatabase();
-            Cursor routeCursor = db.query("routes", new String[]{"_id", "route_name", "route_number"},
+            return db.query("routes", new String[]{"_id", "route_name", "route_number"},
                     "company = ?", new String[]{company}, null, null, "cast(route_number as unsigned)");
-            return routeCursor;
         } catch (SQLiteException e) {
             System.out.println(e.toString());
             return null;
@@ -47,10 +45,9 @@ public class ETADetroitDatabaseHelper extends SQLiteAssetHelper {
     public Cursor getRouteDetails(String route) {
         try {
             db = getReadableDatabase();
-            Cursor routeDetailsCursor = db.query("routes", new String[]{"_id",
+            return db.query("routes", new String[]{"_id",
                             "company", "route_number", "direction1", "direction2", "days_active", "route_id"},
                     "route_name = ?", new String[]{route}, null, null, null);
-            return routeDetailsCursor;
         } catch (SQLiteException e) {
             System.out.println(e.toString());
             return null;
@@ -60,12 +57,35 @@ public class ETADetroitDatabaseHelper extends SQLiteAssetHelper {
     public Cursor getRouteStops(String route_id) {
         try {
             db = getReadableDatabase();
-            Cursor routeStopsCursor = db.query("stop_locations", new String[]{"_id", "stop_name"},
+            return db.query("stop_locations", new String[]{"_id", "stop_name"},
                     "route_id = ?", new String[]{route_id}, null, null, null);
-            return routeStopsCursor;
         } catch (SQLiteException e) {
             System.out.println(e.toString());
             return null;
         }
+    }
+
+    public String getCompanyName(int position) {
+        Cursor companyNames = getCompanyNames();
+
+        if (companyNames != null && companyNames.moveToPosition(position)) {
+            return companyNames.getString(0);
+        }
+        return null;
+    }
+
+    public int getCompanyListSize() {
+        return getCompanyNames().getCount();
+    }
+
+    public int getCompanyImageResourceId(Context context, int position) {
+        Cursor companyNames = getCompanyNames();
+        String imageName;
+        if (companyNames != null && companyNames.moveToPosition(position)) {
+            imageName = companyNames.getString(0).toLowerCase();
+            return context.getResources().getIdentifier(imageName, "drawable",
+                    context.getPackageName());
+        }
+        return 0;
     }
 }

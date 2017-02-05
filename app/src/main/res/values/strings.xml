@@ -6,4 +6,6 @@
     <string name="desc">description</string>
 
     <string name="routes">ROUTES</string>
+
+    <string name="show_as_grid">Show as grid</string>
 </resources>

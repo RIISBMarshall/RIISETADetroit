@@ -33,13 +33,14 @@ public class CompanyDetailsActivity extends Activity {
     private int defaultColor;
     private String companyName;
     private int companyImageResourceId;
+    private Controller aController;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company_details);
-        final Controller aController = (Controller) getApplicationContext();
+        aController = (Controller) getApplicationContext();
 
         int companyPosition = getIntent().getIntExtra(EXTRA_PARAM_ID, 0);
 
@@ -53,7 +54,7 @@ public class CompanyDetailsActivity extends Activity {
         defaultColor = getResources().getColor(R.color.primary_dark);
 
 
-        setUpAdapter(aController);
+        setUpAdapter();
         loadBusCompany();
         windowTransition();
         getPhoto();
@@ -71,7 +72,7 @@ public class CompanyDetailsActivity extends Activity {
         });
     }
 
-    private void setUpAdapter(Controller aController) {
+    private void setUpAdapter() {
         routeCursor = aController.getRoutes(companyName);
         RouteCursorAdapter routeAdapter = new RouteCursorAdapter(this, routeCursor);
         mList.setAdapter(routeAdapter);
@@ -98,7 +99,7 @@ public class CompanyDetailsActivity extends Activity {
     }
 
     private void colorize(Bitmap photo) {
-        Palette mPalette = Palette.generate(photo);
+        Palette mPalette = new Palette.Builder(photo).generate();
         applyPalette(mPalette);
     }
 
