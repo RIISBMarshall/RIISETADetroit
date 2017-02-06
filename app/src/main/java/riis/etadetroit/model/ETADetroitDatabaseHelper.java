@@ -57,8 +57,8 @@ public class ETADetroitDatabaseHelper extends SQLiteAssetHelper {
     public Cursor getRouteStops(String route_id) {
         try {
             db = getReadableDatabase();
-            return db.query("stop_locations", new String[]{"_id", "stop_name"},
-                    "route_id = ?", new String[]{route_id}, null, null, null);
+            return db.query("stop_orders", new String[]{"_id", "stop_name"},
+                    "route_id = ? AND stop_day = ?", new String[]{route_id, "Weekday"}, null, null, null);
         } catch (SQLiteException e) {
             System.out.println(e.toString());
             return null;
