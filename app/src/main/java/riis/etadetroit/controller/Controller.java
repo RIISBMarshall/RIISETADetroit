@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.database.Cursor;
 
+import riis.etadetroit.model.CompanyData;
 import riis.etadetroit.model.ETADetroitDatabaseHelper;
 
 /**
@@ -19,15 +20,17 @@ public class Controller extends Application {
     }
 
     public int getCompanyListSize() {
-        return eTADetroitDatabaseHelper.getCompanyListSize();
+        return eTADetroitDatabaseHelper.getCompanyNames().getCount();
     }
 
     public String getCompanyName(int position) {
-        return eTADetroitDatabaseHelper.getCompanyName(position);
+        CompanyData companyData = new CompanyData(eTADetroitDatabaseHelper.getCompanyNames());
+        return companyData.getCompanyName(position);
     }
 
     public int getCompanyImageResourceId(Context context, int position) {
-        return eTADetroitDatabaseHelper.getCompanyImageResourceId(context, position);
+        CompanyData companyData = new CompanyData(eTADetroitDatabaseHelper.getCompanyNames());
+        return companyData.getCompanyImageResourceId(context, position);
     }
 
     public Cursor getRoutes(String company) {

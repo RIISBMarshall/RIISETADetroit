@@ -20,7 +20,7 @@ public class ETADetroitDatabaseHelper extends SQLiteAssetHelper {
         super(context, DB_NAME, null, 1);
     }
 
-    private Cursor getCompanyNames() {
+    public Cursor getCompanyNames() {
         try {
             db = getReadableDatabase();
             return db.query(true, "routes", new String[]{"company"},
@@ -63,29 +63,5 @@ public class ETADetroitDatabaseHelper extends SQLiteAssetHelper {
             System.out.println(e.toString());
             return null;
         }
-    }
-
-    public String getCompanyName(int position) {
-        Cursor companyNames = getCompanyNames();
-
-        if (companyNames != null && companyNames.moveToPosition(position)) {
-            return companyNames.getString(0);
-        }
-        return null;
-    }
-
-    public int getCompanyListSize() {
-        return getCompanyNames().getCount();
-    }
-
-    public int getCompanyImageResourceId(Context context, int position) {
-        Cursor companyNames = getCompanyNames();
-        String imageName;
-        if (companyNames != null && companyNames.moveToPosition(position)) {
-            imageName = companyNames.getString(0).toLowerCase();
-            return context.getResources().getIdentifier(imageName, "drawable",
-                    context.getPackageName());
-        }
-        return 0;
     }
 }
