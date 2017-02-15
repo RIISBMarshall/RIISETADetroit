@@ -35,18 +35,18 @@ public class CompanyListAdapter extends RecyclerView.Adapter<CompanyListAdapter.
 
     // 3
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final LinearLayout placeHolder;
-        private final LinearLayout placeNameHolder;
-        private final TextView placeName;
-        private final ImageView placeImage;
+        private final LinearLayout mainHolder;
+        private final LinearLayout busNameHolder;
+        private final TextView busName;
+        private final ImageView busImage;
 
         ViewHolder(View itemView) {
             super(itemView);
-            placeHolder = (LinearLayout) itemView.findViewById(R.id.mainHolder);
-            placeName = (TextView) itemView.findViewById(R.id.busName);
-            placeNameHolder = (LinearLayout) itemView.findViewById(R.id.busNameHolder);
-            placeImage = (ImageView) itemView.findViewById(R.id.busImage);
-            placeHolder.setOnClickListener(this);
+            mainHolder = (LinearLayout) itemView.findViewById(R.id.mainHolder);
+            busName = (TextView) itemView.findViewById(R.id.busName);
+            busNameHolder = (LinearLayout) itemView.findViewById(R.id.busNameHolder);
+            busImage = (ImageView) itemView.findViewById(R.id.busImage);
+            mainHolder.setOnClickListener(this);
         }
 
         @Override
@@ -80,14 +80,14 @@ public class CompanyListAdapter extends RecyclerView.Adapter<CompanyListAdapter.
     // 3
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.placeName.setText(aController.getCompanyName(position));
-        Picasso.with(mContext).load(aController.getCompanyImageResourceId(mContext, position)).into(holder.placeImage);
+        holder.busName.setText(aController.getCompanyName(position));
+        Picasso.with(mContext).load(aController.getCompanyImageResourceId(mContext, position)).into(holder.busImage);
 
         Bitmap photo = BitmapFactory.decodeResource(mContext.getResources(), aController.getCompanyImageResourceId(mContext, position));
         new Palette.Builder(photo).generate(new Palette.PaletteAsyncListener() {
             public void onGenerated(Palette palette) {
                 int bgColor = palette.getMutedColor(mContext.getResources().getColor(android.R.color.black));
-                holder.placeNameHolder.setBackgroundColor(bgColor);
+                holder.busNameHolder.setBackgroundColor(bgColor);
             }
         });
     }

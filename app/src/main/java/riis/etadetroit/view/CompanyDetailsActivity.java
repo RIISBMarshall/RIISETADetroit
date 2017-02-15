@@ -47,7 +47,7 @@ public class CompanyDetailsActivity extends Activity {
         companyName = aController.getCompanyName(companyPosition);
         companyImageResourceId = aController.getCompanyImageResourceId(this, companyPosition);
 
-        mList = (ListView) findViewById(R.id.list);
+        mList = (ListView) findViewById(R.id.routelist);
         mImageView = (ImageView) findViewById(R.id.busImage);
         mTitle = (TextView) findViewById(R.id.textView);
         mTitleHolder = (LinearLayout) findViewById(R.id.busNameHolder);
