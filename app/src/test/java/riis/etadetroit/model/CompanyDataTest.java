@@ -23,9 +23,7 @@ public class CompanyDataTest extends TestCase {
     @Before
     public void setUp() {
 
-
     }
-
 
     public void testGetCompanyName() throws Exception {
         Cursor companyNames = mock(Cursor.class);
@@ -35,5 +33,4 @@ public class CompanyDataTest extends TestCase {
         position = 0;
         assertEquals("SmartBus", companyData.getCompanyName(position));
     }
-
 }
