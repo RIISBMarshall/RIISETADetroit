@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
         public void onItemClick(View v, int position) {
             Intent intent = new Intent(MainActivity.this, CompanyDetailsActivity.class);
             intent.putExtra(CompanyDetailsActivity.EXTRA_PARAM_ID, position);
-            //startActivity(intent);
+
             ImageView busImage = (ImageView) v.findViewById(R.id.busImage);
             LinearLayout busNameHolder = (LinearLayout) v.findViewById(R.id.busNameHolder);
 
