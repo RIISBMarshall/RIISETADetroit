@@ -3,6 +3,7 @@ package riis.etadetroit.model;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.MatrixCursor;
+import android.widget.CursorAdapter;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -16,35 +17,23 @@ import org.junit.Before;
  */
 public class CompanyDataTest extends TestCase {
 
-    private CompanyData companyData;
-
-    Context mContext;
+    public CompanyData companyData;
+    public int position;
 
     @Before
     public void setUp() {
-        MatrixCursor matrixCursor = new MatrixCursor(new String[]{"company"});
-        matrixCursor.addRow(new Object[]{"SmartBus"});
-        matrixCursor.addRow(new Object[]{"DDOT"});
-        matrixCursor.addRow(new Object[]{"RefleX"});
-        Cursor companyNames = matrixCursor;
-        companyData = new CompanyData(companyNames);
-        mContext = mock(Context.class);
 
-        when(mContext.getResources().getIdentifier("smartbus", "drawable", "packname")).thenReturn(0);
-        when(mContext.getResources().getIdentifier("ddot", "drawable", "packname")).thenReturn(1);
-        when(mContext.getResources().getIdentifier("reflex", "drawable", "packname")).thenReturn(2);
-        when(mContext.getPackageName()).thenReturn("packname");
+
     }
 
 
     public void testGetCompanyName() throws Exception {
-        assertEquals(companyData.getCompanyName(0), "SmartBus");
-        assertEquals(companyData.getCompanyName(1), "DDOT");
-        assertEquals(companyData.getCompanyName(2), "RefleX");
-    }
-
-    public void testGetCompanyImageResourceId() throws Exception {
-        assertEquals(1, companyData.getCompanyImageResourceId(mContext, 1));
+        Cursor companyNames = mock(Cursor.class);
+        when(companyNames.moveToPosition(position)).thenReturn(true);
+        when(companyNames.getString(0)).thenReturn("SmartBus");
+        companyData = new CompanyData(companyNames);
+        position = 0;
+        assertEquals("SmartBus", companyData.getCompanyName(position));
     }
 
 }
