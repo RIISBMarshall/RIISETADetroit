@@ -1,4 +1,4 @@
-buildscript {
+/*buildscript {
     repositories {
         maven {
             url "https://plugins.gradle.org/m2/"
@@ -15,7 +15,7 @@ genymotion.devices {
     GoogleNexus5X {
         deleteWhenFinish false
     }
-}
+}*/
 
 apply plugin: 'com.android.application'
 
