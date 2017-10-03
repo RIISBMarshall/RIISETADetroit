@@ -1,13 +1,18 @@
-#!/bin/bash
-#Takes an argument of the name of your emulator
-#Start the emulator
-/Applications/Genymotion.app/Contents/MacOS/gmtool admin start "Google Nexus 5"
+$ANDROID_HOME/tools/emulator -avd $1 &
+EMULATOR_PID=$!
 
 # Wait for Android to finish booting
-adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done;'
+WAIT_CMD="$ANDROID_HOME/platform-tools/adb wait-for-device shell getprop init.svc.bootanim"
+until $WAIT_CMD | grep -m 1 stopped; do
+  echo "Waiting..."
+  sleep 1
+done
+
+# Unlock the Lock Screen
+$ANDROID_HOME/platform-tools/adb shell input keyevent 82
 
 # Run the tests
 ./gradlew connectedAndroidTest -i
 
 # Stop the background processes
-ps x | grep "Genymotion\.app/Contents/MacOS/.*player" | awk '{print $1}' | xargs kill
+kill $EMULATOR_PID
