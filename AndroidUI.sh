@@ -1,4 +1,7 @@
-$ANDROID_HOME/tools/emulator -avd $1 &
+#!/bin/bash
+
+#Start the emulator
+$ANDROID_HOME/tools/emulator -avd $1 -wipe-data &
 EMULATOR_PID=$!
 
 # Wait for Android to finish booting
